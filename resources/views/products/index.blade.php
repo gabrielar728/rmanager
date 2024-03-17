@@ -23,26 +23,28 @@
                         <div class="row" style="margin-bottom: 10px;">
                             <div class="col-lg-2" style="margin-left: 5px;">
                                 <input type="radio" id="group_check"
-                                       name="item_check" value="groups" checked />
+                                       name="item_check" value="groups" checked/>
                                 <label for="group_check">Grupuri</label>
                             </div>
 
                             <div class="col-lg-2">
                                 <input type="radio" id="article_check"
-                                       name="item_check" value="articles" />
+                                       name="item_check" value="articles"/>
                                 <label for="article_check">Articole</label>
                             </div>
 
                             <div class="col-lg-2">
                                 <input type="radio" id="both_check"
-                                       name="item_check" value="both" />
+                                       name="item_check" value="both"/>
                                 <label for="both_check">Toate</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
-                                <label id="item_label" for="item_id" style="font-weight: 600;">Lista Grupuri <span style="color: red;">*</span></label>
-                                <select name="item_id" class="form-control item_id" id="item_id" onchange="displayVals(this.value)" required>
+                                <label id="item_label" for="item_id" style="font-weight: 600;">Lista Grupuri <span
+                                            style="color: red;">*</span></label>
+                                <select name="item_id" class="form-control item_id" id="item_id"
+                                        onchange="displayVals(this.value)" required>
                                     <option value="">--selecteaza un grup--</option>
                                     @foreach($groups as $key => $group)
                                         <option value="{{ $group->id }}" name="group">{{ $group->name }}</option>
@@ -51,7 +53,8 @@
                             </div>
 
                             <div class="col-sm-3" style="margin-bottom: 10px;">
-                                <label for="worker_id" style="font-weight: 600;">Lista Lucratori <span style="color: red;">*</span></label>
+                                <label for="worker_id" style="font-weight: 600;">Lista Lucratori <span
+                                            style="color: red;">*</span></label>
                                 <select name="worker_id" class="form-control worker_id" id="worker_id" required>
                                     <option value="">--selecteaza un lucrator--</option>
                                     @foreach($workers as $key => $worker)
@@ -61,12 +64,12 @@
                             </div>
 
                             <div class="col-sm-3">
-                                <label for="production_date" style="font-weight: 600;">Data Productie <span style="color: red;">*</span></label>
-                                <input type="date" id="production_date" name="production_date" class="form-control" required>
+                                <label for="production_date" style="font-weight: 600;">Data Productie <span
+                                            style="color: red;">*</span></label>
+                                <input type="week" id="production_date" name="production_date" class="form-control"
+                                       required>
                             </div>
                         </div>
-
-
                     </div>
 
                     <div class="panel-footer">
@@ -90,6 +93,7 @@
                 </header>
                 <div class="panel-body" style="padding-bottom: 0;">
                     <div id="items">
+                        <p>Nu exista niciun item selectat.</p>
                     </div>
                 </div>
             </section>
@@ -108,27 +112,28 @@
             url = url.replace(':item_name', item_name);
             form.action = url;
         }
-    //======================================================================
+
+        //======================================================================
         $(document).ready(function () {
             showProductInfo();
-        //-------------------------------------------------
-            $('input:radio[name="item_check"]').change(function(){
-                if($(this).val() === 'groups'){
+            //-------------------------------------------------
+            $('input:radio[name="item_check"]').change(function () {
+                if ($(this).val() === 'groups') {
                     displayGroups()
-                } else if($(this).val() === 'articles'){
+                } else if ($(this).val() === 'articles') {
                     displayArticles();
-                } else if($(this).val() === 'both'){
+                } else if ($(this).val() === 'both') {
                     displayGroupsAndArticles()
                 }
             });
         });
-    //======================================================================
+        //======================================================================
         $('#frm-create-product').on('submit', function (e) {
             e.preventDefault();
             var data = $(this).serialize();
             var url = $(this).attr('action');
 
-            $.post(url,data,function(data){
+            $.post(url, data, function (data) {
                 showProductInfo();
             });
             $(this).trigger('reset');
@@ -136,7 +141,8 @@
             displayGroups();
             $("#items").html("");
         });
-    //======================================================================
+
+        //======================================================================
         function showProductInfo() {
             var data = $('#frm-create-product').serialize();
             $.get("{{ route('showProductInformation') }}", data, function (data) {
@@ -144,103 +150,107 @@
 
             });
         }
-    //======================================================================
-        $('#item_id').select2({ placeholder: '--selecteaza un grup--', width: '100%'});
-        $('#worker_id').select2({ placeholder: '--selecteaza un lucrator--', width: '100%'});
-    //======================================================================
-        function displayVals(data)
-        {
+
+        //======================================================================
+        $('#item_id').select2({placeholder: '--selecteaza un grup--', width: '100%'});
+        $('#worker_id').select2({placeholder: '--selecteaza un lucrator--', width: '100%'});
+        // $('#production_date').datepicker();
+
+        //======================================================================
+        function displayVals(data) {
             var id = data;
             var item_name = $('#item_id').find('option:selected').attr("name");
             $.ajax({
                 type: "POST",
                 url: "afisare-articol",
-                data: { 'id':id, 'item_name':item_name },
-                success:function(articles)
-                {
+                data: {'id': id, 'item_name': item_name},
+                success: function (articles) {
                     $("#items").html(articles);
                 }
             });
         }
+
         //-------------------------------------------------------------------
-            function displayGroups() {
-                $('#item_id').select2({ placeholder: '--selecteaza un grup--', width: '100%'});
-                var id = $('#item_id').val();
-                var options = '<option value="">--selecteaza un grup--</option>';
+        function displayGroups() {
+            $('#item_id').select2({placeholder: '--selecteaza un grup--', width: '100%'});
+            var id = $('#item_id').val();
+            var options = '<option value="">--selecteaza un grup--</option>';
 
-                $.ajax({
-                    type: 'get',
-                    url: '{!! URL::route('showGroups') !!}',
-                    dataType: 'json',
-                    data: {'id': id},
-                    success: function (data) {
+            $.ajax({
+                type: 'get',
+                url: '{!! URL::route('showGroups') !!}',
+                dataType: 'json',
+                data: {'id': id},
+                success: function (data) {
 
-                        $.each(data.groups, function (i, group) {
-                            options += '<option value="' + group.id + '" name="group">' + group.name + '</option>';
-                        });
-                        $('#item_id').html(options);
+                    $.each(data.groups, function (i, group) {
+                        options += '<option value="' + group.id + '" name="group">' + group.name + '</option>';
+                    });
+                    $('#item_id').html(options);
 
-                    },
-                    error: function () {
-                        alert('A aparut o problema. Va rog sa dati refresh la aplicatie.')
-                    }
-                });
-                document.getElementById('item_label').innerHTML = 'Lista Grupuri';
-            }
+                },
+                error: function () {
+                    alert('A aparut o problema. Va rog sa dati refresh la aplicatie.')
+                }
+            });
+            document.getElementById('item_label').innerHTML = 'Lista Grupuri';
+        }
+
         //----------------------------------------------------------------------
-            function displayArticles() {
-                $('#item_id').select2({ placeholder: '--selecteaza un articol--', width: '100%'});
-                var id = $('#item_id').val();
-                var options = '<option value="">--selecteaza un articol--</option>';
+        function displayArticles() {
+            $('#item_id').select2({placeholder: '--selecteaza un articol--', width: '100%'});
+            var id = $('#item_id').val();
+            var options = '<option value="">--selecteaza un articol--</option>';
 
-                $.ajax({
-                    type: 'get',
-                    url: '{!! URL::route('showArticle') !!}',
-                    dataType: 'json',
-                    data: {'id': id},
-                    success: function (data) {
+            $.ajax({
+                type: 'get',
+                url: '{!! URL::route('showArticle') !!}',
+                dataType: 'json',
+                data: {'id': id},
+                success: function (data) {
 
-                        $.each(data.articles, function (i, article) {
-                            options += '<option value="' + article.id + '" name="article">' + article.name + '</option>';
-                        });
-                        $('#item_id').html(options);
+                    $.each(data.articles, function (i, article) {
+                        options += '<option value="' + article.id + '" name="article">' + article.name + '</option>';
+                    });
+                    $('#item_id').html(options);
 
-                    },
-                    error: function () {
-                        alert('A aparut o problema. Va rog sa dati refresh la aplicatie.')
-                    }
-                });
-                document.getElementById('item_label').innerHTML = 'Lista Articole';
-            }
+                },
+                error: function () {
+                    alert('A aparut o problema. Va rog sa dati refresh la aplicatie.')
+                }
+            });
+            document.getElementById('item_label').innerHTML = 'Lista Articole';
+        }
+
         //-----------------------------------------------------------------------------
-            function displayGroupsAndArticles() {
-                $('#item_id').select2({ placeholder: '--selecteaza un grup sau articol--', width: '100%'});
-                var id = $('#item_id').val();
-                var options =  '<option value="">--selecteaza un grup sau articol--</option>';
+        function displayGroupsAndArticles() {
+            $('#item_id').select2({placeholder: '--selecteaza un grup sau articol--', width: '100%'});
+            var id = $('#item_id').val();
+            var options = '<option value="">--selecteaza un grup sau articol--</option>';
 
-                $.ajax({
-                    type: 'get',
-                    url: '{!! URL::route('showGroupsArticles') !!}',
-                    dataType: 'json',
-                    data: {'id':id},
-                    success: function (data) {
+            $.ajax({
+                type: 'get',
+                url: '{!! URL::route('showGroupsArticles') !!}',
+                dataType: 'json',
+                data: {'id': id},
+                success: function (data) {
 
-                        $.each(data.groups, function (i, group) {
-                            options += '<option value="'+group.id+'" name="group">'+group.name+'</option>';
-                        });
+                    $.each(data.groups, function (i, group) {
+                        options += '<option value="' + group.id + '" name="group">' + group.name + '</option>';
+                    });
 
-                        $.each(data.articles, function (i, article) {
-                            options += '<option value="'+article.id+'" name="article">'+article.name+'</option>';
-                        });
-                        $('#item_id').html(options);
+                    $.each(data.articles, function (i, article) {
+                        options += '<option value="' + article.id + '" name="article">' + article.name + '</option>';
+                    });
+                    $('#item_id').html(options);
 
-                    },
-                    error: function () {
-                        alert('A aparut o problema. Va rog sa dati refresh la aplicatie.')
-                    }
-                });
-                document.getElementById('item_label').innerHTML = 'Lista Grupuri & Articole';
-            }
+                },
+                error: function () {
+                    alert('A aparut o problema. Va rog sa dati refresh la aplicatie.')
+                }
+            });
+            document.getElementById('item_label').innerHTML = 'Lista Grupuri & Articole';
+        }
 
 
     </script>

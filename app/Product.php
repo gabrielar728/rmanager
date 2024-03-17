@@ -8,8 +8,7 @@ class Product extends Model
 {
     protected $table = 'products';
     protected $fillable = [
-        'row', 'article_id', 'group_id', 'status_id', 'worker_id', 'workers_nr', 'initial_production_date', 'production_date',  'finished_at',
-    ];
+        'row', 'article_id', 'group_id', 'status_id', 'worker_id', 'workers_nr', 'initial_production_date', 'production_date', 'production_date_week',  'finished_at', 'serial_no', 'sales_order', 'product', 'scanned_barcode',    ];
 
     public function article()
     {

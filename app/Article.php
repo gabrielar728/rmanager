@@ -9,7 +9,7 @@ class Article extends Model
 
     protected $table = 'articles';
     protected $fillable = [
-        'name','workers_required','status_id','category_id','client_id',
+        'name', 'workers_required', 'status_id', 'category_id', 'client_id',
     ];
 
     public function client()
@@ -19,7 +19,7 @@ class Article extends Model
 
     public function article_category()
     {
-        return $this->belongsTo(ArticleCategory::class,'category_id');
+        return $this->belongsTo(ArticleCategory::class, 'category_id');
     }
 
     public function groups()

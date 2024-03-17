@@ -116,7 +116,7 @@ return [
     | the box, Laravel uses the Monolog PHP logging library. This gives
     | you a variety of powerful log handlers / formatters to utilize.
     |
-    | Available Settings: "single", "daily", "syslog", "errorlog"
+    | Available Setting: "single", "daily", "syslog", "errorlog"
     |
     */
 
@@ -162,7 +162,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-		MasterRO\LaravelFileCleaner\FileCleanerServiceProvider::class,
+        MasterRO\LaravelFileCleaner\FileCleanerServiceProvider::class,
+        App\Providers\SettingServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -180,11 +181,10 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Watson\Active\ActiveServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
-		Webklex\IMAP\Providers\LaravelServiceProvider::class,
-		MasterRO\LaravelFileCleaner\FileCleanerServiceProvider::class,
-		Spatie\Backup\BackupServiceProvider::class,
-		UxWeb\SweetAlert\SweetAlertServiceProvider::class,
-
+        Webklex\IMAP\Providers\LaravelServiceProvider::class,
+        MasterRO\LaravelFileCleaner\FileCleanerServiceProvider::class,
+        Spatie\Backup\BackupServiceProvider::class,
+        UxWeb\SweetAlert\SweetAlertServiceProvider::class,
     ],
 
     /*
@@ -219,7 +219,7 @@ return [
         'Lang' => Illuminate\Support\Facades\Lang::class,
         'Log' => Illuminate\Support\Facades\Log::class,
         'Mail' => Illuminate\Support\Facades\Mail::class,
-        'Notification' => Illuminate\Support\Facades\Notification::class,
+        'Setting' => Illuminate\Support\Facades\Notification::class,
         'Password' => Illuminate\Support\Facades\Password::class,
         'Queue' => Illuminate\Support\Facades\Queue::class,
         'Redirect' => Illuminate\Support\Facades\Redirect::class,
@@ -238,9 +238,8 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Active' => Watson\Active\Facades\Active::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
-		'Client' => Webklex\IMAP\Facades\Client::class,
-		'Alert' => UxWeb\SweetAlert\SweetAlert::class,
-
+        'Client' => Webklex\IMAP\Facades\Client::class,
+        'Alert' => UxWeb\SweetAlert\SweetAlert::class,
     ],
 
 ];

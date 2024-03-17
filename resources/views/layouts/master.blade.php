@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
-    <meta name="author" content="GeeksLabs">
-    <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+    <meta name="description" content="rManager">
+    <meta name="author" content="Romwell">
+    <meta name="keyword" content="Resin Manager">
     <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
 
     <title>rManager</title>
@@ -23,8 +23,6 @@
     <link rel="stylesheet" href="{{ asset('css/fullcalendar.css') }}">
     <link href="{{ asset('css/widgets.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style-responsive.css') }}" rel="stylesheet" />
-    <link href="{{ asset('css/xcharts.min.css') }}" rel=" stylesheet">
     <link href="{{ asset('css/jquery-ui-1.10.4.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/jquery.dataTables.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/buttons.dataTables.min.css') }}" rel="stylesheet">
@@ -44,7 +42,8 @@
     </section>
 </section>
 
-<script src="{{ asset('js/jquery.js') }}"></script>
+{{--<script src="{{ asset('js/jquery.js') }}"></script>--}}
+<script src="{{ asset('js/jquery-3.7.0.js') }}"></script>
 <script src="{{ asset('js/jquery-ui-1.10.4.min.js') }}"></script>
 {{--<script src="{{ asset('js/jquery-1.8.3.min.js') }}"></script>--}}
 {{--<script type="text/javascript" src="{{ asset('js/jquery-ui-1.9.2.custom.min.js') }}"></script>--}}
@@ -84,6 +83,7 @@
 <script src="{{ asset('js/sparklines.js') }}"></script>
 <script src="{{ asset('js/charts.js') }}"></script>
 <script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
+<script src="{{ asset('js/jquery-sortable.js') }}"></script>
 
 {{--dataTables--}}
 <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
@@ -92,12 +92,16 @@
 <script src="{{ asset('js/pdfmake.min.js') }}"></script>
 <script src="{{ asset('js/vfs_fonts.js') }}"></script>
 <script src="{{ asset('js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('js/buttons.print.min.js') }}"></script>
+<script src="{{ asset('js/dataTables.select.min.js') }}"></script>
+{{--<script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>--}}
+{{--<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.colVis.min.js"></script>--}}
 
 {{--select2--}}
 <script src="{{ asset('js/select2.min.js') }}"></script>
 
 {{--typeahead--}}
-<script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap3-typeahead.min.js') }}"></script>
 
 {{--multiselect--}}
 <script src="{{ asset('js/jquery.multiselect.js') }}"></script>

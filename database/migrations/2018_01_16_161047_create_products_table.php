@@ -23,10 +23,16 @@ class CreateProductsTable extends Migration
             $table->integer('status_id')->unsigned()->default(1);
             $table->foreign('status_id')->references('id')->on('statuses');
             $table->integer('worker_id')->unsigned()->default(1);
-            $table->date('initial_production_date')->nullable();
+            $table->string('initial_production_date')->nullable();
             $table->date('production_date')->nullable();
             $table->foreign('worker_id')->references('id')->on('workers');
             $table->datetime('finished_at')->nullable();
+            $table->integer('workers_nr')->unsigned();
+            $table->string('production_date_week')->nullable();
+            $table->string('serial_no')->unique()->nullable();
+            $table->string('sales_order')->nullable();
+            $table->string('product')->nullable();
+            $table->boolean('scanned_barcode')->default(0);
             $table->timestamps();
         });
     }

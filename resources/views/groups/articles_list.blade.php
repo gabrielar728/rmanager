@@ -42,7 +42,7 @@
 </ol>
 <button class="btn btn-primary btn-sm sortGroup" id="{{ $id }}" style="margin-left: 45px;">Salveaza Ordonarea</button>
 <button class="btn btn-danger btn-sm closeButton" id="{{ $id }}" style="">Inchide</button>
-<script src="{{ asset('js/jquery-sortable.js') }}"></script>
+
 <script>
     $(function  () {
         $("ol.example").sortable();

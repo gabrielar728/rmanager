@@ -16,7 +16,7 @@
                                     <div class="multi-fields">
                                         <div class="multi-field" style="margin-bottom: 10px;">
                                             <div class="form-group{{ $errors->has('card') ? ' has-error' : '' }}">
-                                                <input id="card" type="text" class="input-control card" name="card" value="{{ old('card') }}" placeholder="Scanati Cardul" required autofocus autocomplete="off">
+                                                <input id="card" type="text" class="input-control card" name="card" value="{{ old('card') }}" placeholder="Scanati Cardul" maxlength="10" required autofocus autocomplete="off">
                                                 @if ($errors->has('card'))
                                                     <span class="help-block">
                                                         <strong>{{ $errors->first('card') }}</strong>
@@ -50,8 +50,16 @@
 @section('scripts')
 
     <script type="text/javascript">
-        $(document).click(function() {
-            $( "#card" ).focus();
+        // $(document).click(function() {
+        //     $( "#card" ).focus();
+        // });
+        $(function() {
+            const card = $('#card');
+            card.keyup(function(e) {
+                if (card.val().length >= 10) {
+                    $(this.form).submit();
+                }
+            });
         });
     </script>
 @endsection

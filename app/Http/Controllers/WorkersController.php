@@ -4,13 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\Worker;
-
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Session;
-use Maatwebsite\Excel\Facades\Excel as Excel;
 
 class WorkersController extends Controller
 {
@@ -28,8 +22,7 @@ class WorkersController extends Controller
     {
         if ($request->ajax()) {
             $exist = Worker::where('card', '=', $request->card)->first();
-            if($exist == null)
-            {
+            if ($exist == null) {
                 return response(Worker::create($request->all()));
             }
         }
@@ -38,12 +31,10 @@ class WorkersController extends Controller
     public function showWorkerInformation()
     {
         $workers = $this->workerInformation();
-        foreach ($workers as $worker)
-        {
+        foreach ($workers as $worker) {
             $exist = Product::where('worker_id', $worker->id)
-                                ->whereIn('status_id', [2,4])->value('worker_id');
-            if ($exist === null)
-            {
+                ->whereIn('status_id', [2, 4])->value('worker_id');
+            if ($exist === null) {
                 $worker->exist = 0;
             } else {
                 $worker->exist = 1;
@@ -60,7 +51,7 @@ class WorkersController extends Controller
     public function edit($id)
     {
         $worker = Worker::find($id);
-        return view('workers.edit',compact('worker'));
+        return view('workers.edit', compact('worker'));
     }
 
     public function update(Request $request, $id)
@@ -68,10 +59,10 @@ class WorkersController extends Controller
 
         $worker = Worker::findOrFail($id);
 
-        $worker->first=$request->first;
-        $worker->last=$request->last;
-        $worker->card=$request->card;
-        $worker->status=$request->status;
+        $worker->first = $request->first;
+        $worker->last = $request->last;
+        $worker->card = $request->card;
+        $worker->status = $request->status;
 
         $worker->save();
 
@@ -81,15 +72,15 @@ class WorkersController extends Controller
     public function verifCard(Request $request)
     {
         $exist = Worker::where('card', '=', $request->card)->first();
-        if($exist != null)
-        {
-            return response()->json(['success' => true, 'created'=> true, 'msg' => 'Numarul cardului exista in baza de date.']);
+        if ($exist != null) {
+            return response()->json(['success' => true, 'created' => true, 'msg' => 'Numarul cardului exista in baza de date.']);
         } else {
-            return response()->json(['success' => true, 'created'=> false, 'msg' => 'OK']);
+            return response()->json(['success' => true, 'created' => false, 'msg' => 'OK']);
         }
     }
-	
-	public function workerStatus(Request $request) {
+
+    public function workerStatus(Request $request)
+    {
         $status = $request->status;
         $worker_id = $request->worker_id;
         $data = Worker::findOrFail($worker_id);

@@ -108,6 +108,9 @@
 
             <div style="width: 700px; margin: 0 auto; text-align: left; font-size: 14px; margin-bottom: 30px;">
                 <strong>Nume: </strong><span>{{ $product->article['name'] }}</span><br>
+                <strong>Nume Flowopt: </strong><span>{{ $product->product }}</span><br>
+                <strong>Numar Serie: </strong><span>{{ $product->serial_no }}</span><br>
+                <strong>Numar Comanda: </strong><span>{{ $product->sales_order }}</span><br>
                 <strong>Categorie Articol: </strong><span>{{ $product->article->article_category['name'] }}</span><br>
                 <strong>Client: </strong><span>{{ $product->article->client['name']}}</span><br>
                 <strong>Status: </strong>
@@ -142,9 +145,10 @@
                         <th class="th" style="width: 40px; font-size: 10px;">Nr. crt.</th>
                         <th class="th">Team Leader</th>
                         <th class="th">Material</th>
-                        <th class="th">Cantitate</th>
                         <th class="th">U.M.</th>
                         <th class="th">Extra</th>
+                        <th class="th">Pompa</th>
+                        <th class="th">Cantitate</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -159,7 +163,6 @@
                                     {{ $product->worker['first'] }} {{ $product->worker['last'] }}
                                 </td>
                                 <td class="line-row">{{$dosage->material['name']}}</td>
-                                <td class="line-row">{{ $dosage->quantity }}</td>
                                 <td class="line-row">{{ $dosage->material['unit'] }}</td>
                                 <td class="line-row">
                                     @if($i > count($product->articles_materials_rows))
@@ -168,9 +171,15 @@
                                         <span>Nu</span>
                                     @endif
                                 </td>
+                                <td class="line-row">{{ $dosage->pump['name'] }}</td>
+                                <td class="line-row">{{ $dosage->quantity }}</td>
                             </tr>
                         @endif
                     @endforeach
+                    <tr style="background-color: #e6f0ff;">
+                        <td colspan="6" style="text-align: right;  border: 1px solid #000;"><b>TOTAL</b></td>
+                        <td style="text-align: center;  border: 1px solid #000;"><b>{{ $dosages->sum('quantity') }}</b></td>
+                    </tr>
                     </tbody>
                 </table>
             @else

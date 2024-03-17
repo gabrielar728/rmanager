@@ -101,7 +101,6 @@
             var length = $('#selected_articles option').length;
             if(length >= 2) {
                 addGroup();
-                //location.reload();
                 showGroupInfo();
                 $('.select_length').hide();
                 $('#selected_articles option').remove();
@@ -123,7 +122,7 @@
             var values_id = $("#selected_articles>option").map(function() { return $(this).val(); }).get();
 
             $.post("{{ route('createGroup') }}", {'name':name, 'values_id':values_id}, function (data) {
-                //console.log(data);
+                location.reload();
             });
         }
         //=====================================================================

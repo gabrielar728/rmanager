@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreatePumpsTable extends Migration
 {
@@ -21,7 +21,7 @@ class CreatePumpsTable extends Migration
             $table->string('port', 5);
             $table->integer('material_id')->unsigned();
             $table->foreign('material_id')->references('id')->on('materials');
-			 $table->integer('ratio');
+            $table->integer('ratio');
             $table->timestamps();
         });
     }

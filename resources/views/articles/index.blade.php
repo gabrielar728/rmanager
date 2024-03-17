@@ -130,20 +130,20 @@
             // `d` is the original data object for the row
             var json_data =  d.details;
             var op = '';
-            var check_extra = '';
+            // var check_extra = '';
             var count = 0;
             $.each(json_data, function(key, value){
-                if(json_data[count].extra === 0) {
-                    check_extra = '<input type="checkbox" class="input-control extra" value="0" id="extra" name="extra[]" style="height:20px; width:20px;" disabled>';
-                } else {
-                    check_extra = '<input type="checkbox" class="input-control extra" value="1" checked id="extra" name="extra[]" style="height:20px; width:20px;" disabled>';
-                }
+                // if(json_data[count].extra === 0) {
+                //     check_extra = '<input type="checkbox" class="input-control extra" value="0" id="extra" name="extra[]" style="height:20px; width:20px;" disabled>';
+                // } else {
+                //     check_extra = '<input type="checkbox" class="input-control extra" value="1" checked id="extra" name="extra[]" style="height:20px; width:20px;" disabled>';
+                // }
                 op +=   '<tr>'+
                         '<td style="text-align: center; padding-top: 10px !important;">' + ++key + '</td>' +
                         '<td style="padding-top: 10px !important;">' + json_data[count].material.name + '</td>' +
                         '<td style="padding-top: 10px !important;">' + json_data[count].quantity + '</td>' +
                         '<td style="padding-top: 10px !important;">' + json_data[count].process.name + '</td>' +
-                        '<td style="padding-top: 10px !important; padding-left: 10px;">' + check_extra + '</td>' +
+                        // '<td style="padding-top: 10px !important; padding-left: 10px;">' + check_extra + '</td>' +
                         '<td style="padding-top: 10px !important;">' + json_data[count].material.unit + '</td>' +
                         '</tr>';
                 count++;
@@ -153,10 +153,10 @@
                 '<tr>\n' +
                 '<th style="width: 40px; text-align: center; padding-top: 10px !important;">#</th>\n' +
                 '<th style="padding-top: 10px !important;">Material</th>\n' +
-                '<th style="width: 15%;padding-top: 10px !important;">Cantitate</th>\n' +
+                '<th style="padding-top: 10px !important;">Cantitate</th>\n' +
                 '<th style="padding-top: 10px !important;">Proces</th>\n' +
-                '<th style="width: 70px;padding-top: 10px !important;">Extra</th>\n' +
-                '<th style="width: 7%; padding-top: 10px !important;">U.M.</th>\n' +
+                // '<th style="width: 70px;padding-top: 10px !important;">Extra</th>\n' +
+                '<th style="padding-top: 10px !important;">U.M.</th>\n' +
                 '</tr>\n' +
                 '</thead>\n' +
                 '<tbody>'+
@@ -171,6 +171,7 @@
                 "pageLength": 100,
                 "processing": true,
                 "serverSide": true,
+                ordering: false,
                 "ajax":{
                     "url": "{{ route('ajaxdata.getdataArticles') }}",
                     "dataType": "json",
@@ -206,19 +207,19 @@
                         extend: 'copy',
 
                         exportOptions: {
-                            columns: [1,2,3,4,5]
+                            columns: [1,2,3,5]
                         }
                     },
                     {
                         extend: 'excel',
                         exportOptions: {
-                            columns: [1,2,3,4,5]
+                            columns: [1,2,3,5]
                         }
                     },
                     {
                         extend: 'pdf',
                         exportOptions: {
-                            columns: [1,2,3,4,5]
+                            columns: [1,2,3,5]
                         }
                     }
                 ]
@@ -364,11 +365,11 @@
     }
 
     td.details-control {
-        background: url('../images/details_open.png') no-repeat center center;
+        background: url({{ asset('images/details_open.png')}}) no-repeat center center;
         cursor: pointer;
     }
     tr.shown td.details-control {
-        background: url('../images/details_close.png') no-repeat center center;
+        background: url({{asset('images/details_close.png')}}) no-repeat center center;
     }
 
     table.dataTable tbody th, table.dataTable tbody td {
@@ -379,12 +380,12 @@
         border: none !important;
         padding: 0 30px 0 0;
     }
-	
+
 	 table.dataTable tbody tr {
         background-color: transparent !important;
     }
 
-    .table-striped>tbody>tr:nth-of-type(odd) {
-        background-color: #f9f9f9 !important;
-    }
+    /*.table-striped>tbody>tr:nth-of-type(odd) {*/
+    /*    background-color: #f9f9f9 !important;*/
+    /*}*/
 </style>

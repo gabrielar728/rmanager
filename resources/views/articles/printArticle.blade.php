@@ -126,7 +126,7 @@
                 <th class="th">Cantitate</th>
                 <th class="th">U.M.</th>
                 <th class="th">Proces</th>
-                <th class="th">Extra</th>
+{{--                <th class="th">Extra</th>--}}
             </tr>
             </thead>
             <tbody>
@@ -142,13 +142,13 @@
                     <td class="line-row">{{$articles_material->quantity}}</td>
                     <td class="line-row">{{ $articles_material->material['unit'] }}</td>
                     <td class="line-row">{{$articles_material->process['name']}}</td>
-                    <td class="line-row">
+                    {{--<td class="line-row">
                         @if($articles_material->extra === 0)
                             <span>Nu</span>
                         @else
                            <span>Da</span>
                         @endif
-                    </td>
+                    </td>--}}
                 </tr>
             @endforeach
             </tbody>

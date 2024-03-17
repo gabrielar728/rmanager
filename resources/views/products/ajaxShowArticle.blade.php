@@ -28,7 +28,7 @@
             <th>Material</th>
             <th style="width: 15%;">Cantitate</th>
             <th>Proces</th>
-            <th style="width: 70px;">Extra</th>
+{{--            <th style="width: 70px;">Extra</th>--}}
             <th style="width: 7%;">U.M.</th>
         </tr>
         </thead>
@@ -42,7 +42,7 @@
                 <td><span>{{$articles_material->material['name']}}</span></td>
                 <td><span>{{$articles_material->quantity}}</span></td>
                 <td><span>{{$articles_material->process['name']}}</span></td>
-                <td><span>{{$articles_material->extra === 0 ? 'Nu' : 'Da'}}</span></td>
+{{--                <td><span>{{$articles_material->extra === 0 ? 'Nu' : 'Da'}}</span></td>--}}
                 <td><span>{{ $articles_material->material['unit'] }}</span></td>
         @endforeach
         </tbody>

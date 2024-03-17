@@ -7,7 +7,7 @@ class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     *$table->timestamps();
      * @return void
      */
     public function up()

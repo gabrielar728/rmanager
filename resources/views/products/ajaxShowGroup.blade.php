@@ -18,9 +18,6 @@
         </tr>
         </thead>
         <tbody>
-        <?php
-        $n=0;
-        ?>
         @foreach($articles_groups as $articles_group)
             <tr>
                 <td style=""></td>
@@ -35,7 +32,7 @@
                             <th style="padding-top: 10px !important;">Material</th>
                             <th style="width: 15%;padding-top: 10px !important;">Cantitate</th>
                             <th style="padding-top: 10px !important;">Proces</th>
-                            <th style="width: 70px;padding-top: 10px !important;">Extra</th>
+{{--                            <th style="width: 70px;padding-top: 10px !important;">Extra</th>--}}
                             <th style="width: 7%; padding-top: 10px !important;">U.M.</th>
                         </tr>
                         </thead>
@@ -49,13 +46,13 @@
                                 <td style="padding-top: 10px !important;"><span>{{$articles_material->material['name']}}</span></td>
                                 <td style="padding-top: 10px !important;"><span>{{$articles_material->quantity}}</span></td>
                                 <td style="padding-top: 10px !important;"><span>{{$articles_material->process['name']}}</span></td>
-                                <td style="text-align: center; padding-top: 10px !important;">
+                               {{-- <td style="text-align: center; padding-top: 10px !important;">
                                     @if($articles_material->extra === 0)
                                         <input type="checkbox" class="input-control extra" value="0" id="extra" name="extra[]" style="height:20px; width:20px;" disabled>
                                     @else
                                         <input type="checkbox" class="input-control extra" value="1" checked id="extra" name="extra[]" style="height:20px; width:20px;" disabled>
                                     @endif
-                                </td>
+                                </td>--}}
                                 <td style="padding-top: 10px !important;"><span>{{ $articles_material->material['unit'] }}</span></td>
                         @endforeach
                         </tbody>
@@ -121,11 +118,11 @@
     }
 
     td.details-control {
-        background: url('../images/details_open.png') no-repeat center center;
+        background: url({{ asset('../images/details_open.png') }}) no-repeat center center;
         cursor: pointer;
     }
     tr.shown td.details-control {
-        background: url('../images/details_close.png') no-repeat center center;
+        background: url({{ asset('../images/details_close.png') }}) no-repeat center center;
     }
 
 </style>

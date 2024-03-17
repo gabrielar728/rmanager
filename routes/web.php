@@ -18,6 +18,18 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::post('/user/logout', 'Auth\LoginController@logoutUser')->name('user.logout');
 
 Route::group(['middleware' => 'web'], function () {
+//setting-notifications
+    Route::get('/notificari', [
+        'uses' => 'HomeController@notifications',
+        'as' => 'notifications',
+        'middleware' => 'roles',
+        'roles' => ['Admin', 'Magazie', 'Ingineri']]);
+
+    Route::get('/notificari/insert-email', [
+        'uses' => 'HomeController@addEmailNotification',
+        'as' => 'email.notifications',
+        'middleware' => 'roles',
+        'roles' => ['Admin', 'Magazie', 'Ingineri']]);
 // materials
     Route::get('/materiale/adaugare', [
         'uses' => 'MaterialsController@getManageMaterial',
@@ -453,15 +465,16 @@ Route::group(['middleware' => 'web'], function () {
         'roles' => ['Admin', 'Ingineri']]);
 
 // raspberryPi
-    Route::prefix('productie')->group(function() {
+    Route::prefix('productie')->group(function () {
         Route::get('/', 'RaspberryPiController@index')->name('raspberryPiWorker.home');
+        Route::get('/search', 'RaspberryPiController@searchProducts')->name('searchProducts');
         Route::get('/login', 'AuthRaspberryPiWorker\LoginController@showLoginForm')->name('raspberryPiWorker.login');
         Route::post('/login', 'AuthRaspberryPiWorker\LoginController@login')->name('raspberryPiWorker.login.submit');
-        Route::get('/selectare-lucratori/{id}/{worker_id}', 'RaspberryPiController@selectWorkers')->name('selectWorkers');
-        Route::post('/selectare-muncitori/{id}/{worker_id}', 'RaspberryPiController@addSelectedWorkers')->name('addSelectedWorkers');
-        Route::get('/dozare-produs/{id}/{worker_id}', 'RaspberryPiController@productDosage')->name('productDosage');
-        Route::get('/{id}/completare/{worker_id}', 'RaspberryPiController@moreResin')->name('moreResin');
-        Route::post('/{id}/completare', 'RaspberryPiController@productExtraDosage')->name('productExtraDosage');
+        Route::get('/scanare-cod-de-bare/{id}/{worker_id}', 'RaspberryPiController@barcodeScan')->name('barcodeScan');
+        Route::post('/adaugare-campuri-cod-de-bare/{id}/{worker_id}', 'RaspberryPiController@addBarcodeFields')->name('addBarcodeFields');
+//        Route::get('/dozare-produs/{id}/{worker_id}', 'RaspberryPiController@productDosage')->name('productDosage');
+        Route::get('/{id}/optiuni-cantitati/{worker_id}', 'RaspberryPiController@selectQuantity')->name('selectQuantity');
+        Route::post('/dozare-produs/{id}/{worker_id}', 'RaspberryPiController@productDosageOptions')->name('productDosageOptions');
         Route::get('/produs/{id}/finalizare', 'RaspberryPiController@finishProduct')->name('finishProduct');
         Route::post('/logout', 'AuthRaspberryPiWorker\LoginController@logout')->name('raspberryPiWorker.logout');
     });

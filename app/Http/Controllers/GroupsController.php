@@ -17,19 +17,20 @@ class GroupsController extends Controller
         $this->middleware('auth');
     }
 
-    function index(){
-        $articles = DB::table('articles')->where('status', 1)->orderBy('name','ASC')->get();
+    function index()
+    {
+        $articles = DB::table('articles')->where('status', 1)->orderBy('name', 'ASC')->get();
         return view('groups.index', compact('articles'));
     }
 
     public function createGroup(Request $request)
     {
         $group = new Group();
-        $group->name=$request->name;
-        $group->created_at= Carbon::now();
-        $group->updated_at= Carbon::now();
+        $group->name = $request->name;
+        $group->created_at = Carbon::now();
+        $group->updated_at = Carbon::now();
 
-        if($group->save()) {
+        if ($group->save()) {
             $id = $group->id;
             $count = 1;
 
@@ -39,7 +40,8 @@ class GroupsController extends Controller
                     'row' => $count,
                     'group_id' => $id,
                     'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now(),);
+                    'updated_at' => Carbon::now(),
+                );
 
                 ArticleGroup::insert($data);
                 $count++;
@@ -62,7 +64,8 @@ class GroupsController extends Controller
         return view('groups.groupsInfo', compact('groups'));
     }
 
-    public function articles_selected(Request $request) {
+    public function articles_selected(Request $request)
+    {
         $data = Article::where('id', $request->id)->get();
         return response()->json($data);
     }
@@ -85,7 +88,8 @@ class GroupsController extends Controller
         return redirect()->route('groups.index');
     }
 
-    public function GroupSort(Request $request) {
+    public function GroupSort(Request $request)
+    {
         $id = $request->id;
         $articles_groups = ArticleGroup::with('article')
             ->with('group')
@@ -105,7 +109,8 @@ class GroupsController extends Controller
                 'row' => $count,
                 'group_id' => $request->id,
                 'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),);
+                'updated_at' => Carbon::now(),
+            );
 
             ArticleGroup::insert($data);
             $count++;
@@ -117,11 +122,10 @@ class GroupsController extends Controller
     public function verifGroupName(Request $request)
     {
         $exist = Group::where('name', '=', $request->name)->first();
-        if($exist != null)
-        {
-            return response()->json(['success' => true, 'created'=> true, 'msg' => 'Numele grupului exista in baza de date.']);
+        if ($exist != null) {
+            return response()->json(['success' => true, 'created' => true, 'msg' => 'Numele grupului exista in baza de date.']);
         } else {
-            return response()->json(['success' => true, 'created'=> false, 'msg' => 'OK']);
+            return response()->json(['success' => true, 'created' => false, 'msg' => 'OK']);
         }
     }
 }

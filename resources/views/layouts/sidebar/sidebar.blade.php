@@ -25,8 +25,11 @@
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li class="{{ active('creare_articol') }}"><a class="" href="{{ route('creare_articol') }}">Adaugare</a></li>
-                        <li class="{{ active('informatii-rapoarte-articole') }}"><a class="" href="{{ route('informatii-rapoarte-articole') }}">Informatii & Rapoarte</a></li>
+                        <li class="{{ active('creare_articol') }}"><a class="" href="{{ route('creare_articol') }}">Adaugare</a>
+                        </li>
+                        <li class="{{ active('informatii-rapoarte-articole') }}"><a class=""
+                                                                                    href="{{ route('informatii-rapoarte-articole') }}">Informatii
+                                & Rapoarte</a></li>
                     </ul>
                 </li>
 
@@ -44,8 +47,11 @@
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li class="{{ active('lansare.index') }}"><a class="" href="{{ route('lansare.index') }}">Lansare</a></li>
-                        <li class="{{ active('informatii-rapoarte-produse') }}"><a class="" href="{{ route('informatii-rapoarte-produse') }}">Informatii & Rapoarte</a></li>
+                        <li class="{{ active('lansare.index') }}"><a class="" href="{{ route('lansare.index') }}">Lansare</a>
+                        </li>
+                        <li class="{{ active('informatii-rapoarte-produse') }}"><a class=""
+                                                                                   href="{{ route('informatii-rapoarte-produse') }}">Informatii
+                                & Rapoarte</a></li>
                     </ul>
                 </li>
 
@@ -84,9 +90,14 @@
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li class="{{ active('adaugare-utilizatori') }}"><a class="" href="{{ route('adaugare-utilizatori') }}">Adaugare Utilizatori</a></li>
-                        <li class="{{ active('acordare-permisii') }}"><a class="" href="{{ route('acordare-permisii') }}">Permisii</a></li>
-						<li class="{{ active('backup.index') }}"><a class="" href="{{ route('backup.index') }}">Backup</a></li>
+                        <li class="{{ active('adaugare-utilizatori') }}"><a class=""
+                                                                            href="{{ route('adaugare-utilizatori') }}">Adaugare
+                                Utilizatori</a></li>
+                        <li class="{{ active('acordare-permisii') }}"><a class=""
+                                                                         href="{{ route('acordare-permisii') }}">Permisii</a>
+                        </li>
+                        <li class="{{ active('backup.index') }}"><a class=""
+                                                                    href="{{ route('backup.index') }}">Backup</a></li>
                     </ul>
                 </li>
 
@@ -105,12 +116,15 @@
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li class="{{ active('creare_articol') }}"><a class="" href="{{ route('creare_articol') }}">Adaugare</a></li>
-                        <li class="{{ active('informatii-rapoarte-articole') }}"><a class="" href="{{ route('informatii-rapoarte-articole') }}">Informatii & Rapoarte</a></li>
+                        <li class="{{ active('creare_articol') }}"><a class="" href="{{ route('creare_articol') }}">Adaugare</a>
+                        </li>
+                        <li class="{{ active('informatii-rapoarte-articole') }}"><a class=""
+                                                                                    href="{{ route('informatii-rapoarte-articole') }}">Informatii
+                                & Rapoarte</a></li>
                     </ul>
                 </li>
 
-				<li class="{{ active('administrare-materiale') }}">
+                <li class="{{ active('administrare-materiale') }}">
                     <a class="" href="{{ route('groups.index') }}">
                         <i class="fa fa-cubes"></i>
                         <span>Grupuri</span>
@@ -124,8 +138,11 @@
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li class="{{ active('lansare.index') }}"><a class="" href="{{ route('lansare.index') }}">Lansare</a></li>
-                        <li class="{{ active('informatii-rapoarte-produse') }}"><a class="" href="{{ route('informatii-rapoarte-produse') }}">Informatii & Rapoarte</a></li>
+                        <li class="{{ active('lansare.index') }}"><a class="" href="{{ route('lansare.index') }}">Lansare</a>
+                        </li>
+                        <li class="{{ active('informatii-rapoarte-produse') }}"><a class=""
+                                                                                   href="{{ route('informatii-rapoarte-produse') }}">Informatii
+                                & Rapoarte</a></li>
                     </ul>
                 </li>
 
@@ -181,6 +198,12 @@
                 </li>
             @endif
 
+            <li class="{{ active('notifications') }}">
+                <a class="" href="{{ route('notifications') }}">
+                    <i class="fa fa-bell-o"></i>
+                    <span>Notificari</span>
+                </a>
+            </li>
         </ul>
         <!-- sidebar menu end-->
     </div>
